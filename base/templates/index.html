@@ -1,5 +1,23 @@
 {% extends "base.html" %}
-
 {% block content %}
-Hello world
+<table>
+  <tr>
+    <th>
+      name
+    </th>
+    <th>
+      count
+    </th>
+  </tr>
+  {% for name in names %}
+  <tr>
+    <td>
+      {{name.name}}
+    </td>
+    <td>
+      {{name.count}}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}

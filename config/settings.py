@@ -2,6 +2,9 @@
 
 import sys
 import os
+import djcelery
+
+djcelery.setup_loader()
 
 DATABASES = {}
 
@@ -174,6 +177,8 @@ INSTALLED_APPS = (
     'base',
     'django.contrib.admin',
     'users',
+    "djcelery",
+    "randomizer",
 )
 # Set the apps that are installed locally
 try:
@@ -201,11 +206,15 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['console', 'mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -214,3 +223,8 @@ LOGGING = {
 
 # user loggin
 LOGIN_REDIRECT_URL = "/"
+
+#celery
+BROKER_POOL_LIMIT = 1
+
+ALLOWED_HOSTS = ['*']

@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 """ This file contains some generic purpouse views """
 
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.db.models import Count
+
+from randomizer.models import Name
 
 
-@login_required
 def index(request):
     """ view that renders a default home"""
-    return render_to_response('index.html',
+    names = Name.objects.values('name').annotate(count=Count('id'))
+    return render_to_response('index.html', {"names": names},
                               context_instance=RequestContext(request))
