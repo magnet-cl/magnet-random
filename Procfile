@@ -1,1 +1,1 @@
-web: gunicorn magnet-random.wsgi
+web: gunicorn magnetrandom.wsgi
