@@ -35,7 +35,7 @@ if  $INSTALL_APTITUDE ; then
     # sudo install virtual env and other things with aptitude
 
     # Install base packages
-    yes | sudo apt-get install python-pip python-virtualenv python-dev 
+    yes | sudo apt-get install python-pip python-virtualenv python-dev
 
     echo "Are you going to use mysql for your database? [N/y]"
     read INSTALL_MYSQL

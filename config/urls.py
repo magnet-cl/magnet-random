@@ -11,6 +11,7 @@ urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('users.urls')),
+    (r'^name/new/', 'randomizer.views.name_new'),
     (r'^$', 'base.views.index'),
 )
 

@@ -2,21 +2,22 @@
 
 import sys
 import os
-import djcelery
 
-djcelery.setup_loader()
 
 DATABASES = {}
 
 try:
-    from local_settings import LOCAL_DEBUG, LOCAL_DATABASES
+    from local_settings import LOCAL_DEBUG, LOCAL_DATABASES, LOCAL_REPORT_TO
 except:
+    # assume heroku
     import dj_database_url
     DATABASES['default'] = dj_database_url.config()
-    DEBUG = True
+    DEBUG = False
+    REPORT_TO = None
 else:
     DATABASES.update(LOCAL_DATABASES)
     DEBUG = LOCAL_DEBUG
+    REPORT_TO = LOCAL_REPORT_TO
 
 # email settings
 EMAIL_HOST = 'smtp.sendgrid.net'
@@ -177,7 +178,6 @@ INSTALLED_APPS = (
     'base',
     'django.contrib.admin',
     'users',
-    "djcelery",
     "randomizer",
 )
 # Set the apps that are installed locally
@@ -224,7 +224,5 @@ LOGGING = {
 # user loggin
 LOGIN_REDIRECT_URL = "/"
 
-#celery
-BROKER_POOL_LIMIT = 1
-
+# TODO now is allowing all hosts
 ALLOWED_HOSTS = ['*']
