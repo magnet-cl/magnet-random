@@ -31,6 +31,7 @@ class Command(BaseCommand):
 
         url = "%sname/new/" % settings.REPORT_TO
 
+        print "Randomizer started ..."
         while True:
             if name in names:
                 data = urllib.urlencode({"name": name, "count": count})
