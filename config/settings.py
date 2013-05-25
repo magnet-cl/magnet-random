@@ -19,22 +19,6 @@ else:
     DEBUG = LOCAL_DEBUG
     REPORT_TO = LOCAL_REPORT_TO
 
-# email settings
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-try:
-    from local_settings import LOCAL_EMAIL_SETTINGS
-except:
-    email_settings = os.environ
-else:
-    email_settings = LOCAL_EMAIL_SETTINGS
-
-EMAIL_HOST_USER = email_settings['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = email_settings['EMAIL_HOST_PASSWORD']
-EMAIL_SENDER_NAME = email_settings['EMAIL_SENDER_NAME']
-SENDER_EMAIL = email_settings['SENDER_EMAIL']
-
 # the path to the root of the project
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 
